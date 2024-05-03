@@ -2,19 +2,20 @@ import requests
 from faker import Faker
 
 class ZendeskAPI:
-    def __init__(self, api_key, subdomain):
-        self.api_key = api_key
+    def __init__(self, email, api_token, subdomain):
+        self.email = email
+        self.api_token = api_token
         self.subdomain = subdomain
         self.base_url = f"https://{subdomain}.zendesk.com/api/v2"
         self.headers = {
-            "Authorization": f"Bearer {api_key}",
             "Content-Type": "application/json"
         }
+        self.auth = (f"{email}/token", api_token)
         self.faker = Faker()
 
     def send_request(self, method, endpoint, data=None):
         url = f"{self.base_url}/{endpoint}"
-        response = requests.request(method, url, json=data, headers=self.headers)
+        response = requests.request(method, url, auth=self.auth, json=data, headers=self.headers)
         if not response.ok:
             print(f"Request failed: {response.status_code} {response.text}")
         return response
