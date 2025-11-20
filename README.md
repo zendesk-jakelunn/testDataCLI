@@ -15,7 +15,7 @@ Setup Instructions
 
 1. Clone the Repository
 To get started, clone this repository to your local machine and navigate into the directory:
-git clone https://github.com/your-username/zendesk_scripts.git
+git clone https://github.com/zendesk-jakelunn/testDataCLI.git
 cd zendesk_scripts
 
 2. Install Dependencies
